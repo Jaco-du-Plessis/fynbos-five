@@ -20,7 +20,7 @@ Garden demo: open the live GitHub Pages link on campus Wi‑Fi/data **before** y
 
 ## Edit the writing (brother)
 
-All copy lives in [`content.js`](content.js). That file is commented. Change questions, facts, the first-catch message, and the finale there. Save, then refresh. You should not need to touch `app.js`.
+All copy lives in [`content.js`](content.js). That file is commented. Change questions, facts, **QR location hints** (`qrHint` on each insect), the first-catch message, and the finale there. Save, then refresh. You should not need to touch `app.js`.
 
 ## Swap insect art
 

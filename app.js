@@ -137,7 +137,12 @@
         if (isCaught(insect.id)) {
           showFacts(insect);
         } else {
-          showMessage(content.lockedTitle, content.lockedHint, "OK", null);
+          showMessage(
+            content.lockedTitle,
+            insect.qrHint || "Find this insect in the garden and scan the QR.",
+            "OK",
+            null
+          );
         }
       });
       els.guilds.appendChild(btn);
