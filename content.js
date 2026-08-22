@@ -14,11 +14,12 @@
  *   • Insect centred, facing the camera
  *
  * Drop your files into the assets/ folder using these exact names:
- *   assets/bee.png
- *   assets/ant.png
- *   assets/mantis.png
- *   assets/chafer.png
- *   assets/butterfly.png
+ *   assets/bee.png            — shown after catch (colour)
+ *   assets/bee-locked.png     — team board before catch (still auto-greyed)
+ *   assets/ant.png / ant-locked.png
+ *   assets/mantis.png / mantis-locked.png
+ *   assets/chafer.png / chafer-locked.png
+ *   assets/butterfly.png / butterfly-locked.png
  *
  * Bait placeholders (same PNG rules) — replace when you have real art:
  *   assets/bait-flower.png   yellow aster
@@ -27,8 +28,9 @@
  *   assets/bait-fruit.png    overripe fruit
  *   assets/bait-orchid.png   red orchid
  *
- * Then refresh. The grey silhouette on the team board is the same image,
- * just coloured in after you catch it.
+ * The team board uses `lockedImage` until that insect is caught, then `image`.
+ * Uncaught art is still run through the grey CSS filter. Swap the -locked
+ * files when you have dedicated silhouette/grey artwork.
  *
  * QUIZ
  * ----
@@ -103,6 +105,7 @@ window.CONTENT = {
       scientificName: "Apis mellifera capensis",
       guild: "Pollinators",
       image: "assets/bee.png",
+      lockedImage: "assets/bee-locked.png",
       bait: "flower",
       quiz: {
         question: "What ecosystem service do Cape honey bees provide?",
@@ -123,6 +126,7 @@ window.CONTENT = {
       scientificName: "Anoplolepis custodiens",
       guild: "Seed dispersers",
       image: "assets/ant.png",
+      lockedImage: "assets/ant-locked.png",
       bait: "seed",
       quiz: {
         question: "How do pugnacious ants help plants?",
@@ -143,6 +147,7 @@ window.CONTENT = {
       scientificName: "Polyspilota aeruginosa",
       guild: "Pest control",
       image: "assets/mantis.png",
+      lockedImage: "assets/mantis-locked.png",
       bait: "fly",
       quiz: {
         question: "What role does a mantis play in the guilds?",
@@ -163,6 +168,7 @@ window.CONTENT = {
       scientificName: "Pachnoda sinuata",
       guild: "Recyclers",
       image: "assets/chafer.png",
+      lockedImage: "assets/chafer-locked.png",
       bait: "fruit",
       quiz: {
         question: "Why do recyclers like chafers matter?",
@@ -183,6 +189,7 @@ window.CONTENT = {
       scientificName: "Aeropetes tulbaghia",
       guild: "Specialists",
       image: "assets/butterfly.png",
+      lockedImage: "assets/butterfly-locked.png",
       bait: "orchid",
       quiz: {
         question: "What makes a specialist guild different?",

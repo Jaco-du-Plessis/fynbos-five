@@ -25,13 +25,15 @@ All copy lives in [`content.js`](content.js). That file is commented. Change que
 ## Swap insect art
 
 1. Open [`assets/example.png`](assets/example.png). That is the template: about **512×512**, **transparent PNG**, insect centred.
-2. Export your species images with these **exact filenames**:
-   - `assets/bee.png` — Cape Honey Bee
-   - `assets/ant.png` — Large Pugnacious Ant
-   - `assets/mantis.png` — Flag Mantis
-   - `assets/chafer.png` — Garden Fruit Chafer
-   - `assets/butterfly.png` — Cape Mountain Beauty
-3. Replace the placeholder files. Refresh. Grey team-board silhouettes are the same images, coloured in after a catch.
+2. Export colour (caught) and locked (uncaught) images with these **exact filenames**:
+   - `assets/bee.png` / `assets/bee-locked.png` — Cape Honey Bee
+   - `assets/ant.png` / `assets/ant-locked.png` — Large Pugnacious Ant
+   - `assets/mantis.png` / `assets/mantis-locked.png` — Flag Mantis
+   - `assets/chafer.png` / `assets/chafer-locked.png` — Garden Fruit Chafer
+   - `assets/butterfly.png` / `assets/butterfly-locked.png` — Cape Mountain Beauty
+3. Replace the files. Refresh. The team board shows `*-locked.png` with the grey filter until that insect is caught, then the colour `*.png`.
+
+The `-locked` files are copies of the colour art for now — swap them when you have dedicated grey/silhouette sprites.
 
 Bait art (placeholders until you have real sprites): `assets/bait-flower.png`, `bait-seed.png`, `bait-fly.png`, `bait-fruit.png`, `bait-orchid.png`.
 

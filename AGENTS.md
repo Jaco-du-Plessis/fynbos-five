@@ -24,7 +24,7 @@ Keep it tiny. This is a 5–10 minute class demo, not a product.
 | `index.html` | Markup | Team board + capture overlay + quiz + facts + finale |
 | `styles.css` | Presentation | Mobile portrait, outdoor contrast, fynbos palette |
 | `qrcodes.html` | Print sheet | QR images from this page’s origin + `#catch/{id}` |
-| `assets/*.png` | Art | Insects + `bait-*.png` placeholders; `example.png` is the insect template |
+| `assets/*.png` | Art | Colour insects + `*-locked.png` for the uncaught team tile; `bait-*.png`; `example.png` is the insect template |
 | `README.md` | Humans | How to play, edit copy, host, print QRs |
 
 Do **not** put copy strings in `app.js` if they belong in `content.js`.
@@ -33,13 +33,13 @@ Do **not** put copy strings in `app.js` if they belong in `content.js`.
 
 IDs are the hash, the `content.js` `id`, and the PNG filename:
 
-| id | File | Hash |
-| --- | --- | --- |
-| `bee` | `assets/bee.png` | `#catch/bee` |
-| `ant` | `assets/ant.png` | `#catch/ant` |
-| `mantis` | `assets/mantis.png` | `#catch/mantis` |
-| `chafer` | `assets/chafer.png` | `#catch/chafer` |
-| `butterfly` | `assets/butterfly.png` | `#catch/butterfly` |
+| id | Caught | Uncaught (still auto-greyed) | Hash |
+| --- | --- | --- | --- |
+| `bee` | `assets/bee.png` | `assets/bee-locked.png` | `#catch/bee` |
+| `ant` | `assets/ant.png` | `assets/ant-locked.png` | `#catch/ant` |
+| `mantis` | `assets/mantis.png` | `assets/mantis-locked.png` | `#catch/mantis` |
+| `chafer` | `assets/chafer.png` | `assets/chafer-locked.png` | `#catch/chafer` |
+| `butterfly` | `assets/butterfly.png` | `assets/butterfly-locked.png` | `#catch/butterfly` |
 
 Correct bait (must match `content.js`): bee → `flower`, ant → `seed`, mantis → `fly`, chafer → `fruit`, butterfly → `orchid`.
 

@@ -125,7 +125,7 @@
       btn.dataset.id = insect.id;
       btn.innerHTML =
         '<div class="slot-art"><img alt="" src="' +
-        insect.image +
+        (caught ? insect.image : insect.lockedImage) +
         '"></div>' +
         '<span class="slot-guild">' +
         insect.guild +
