@@ -1,0 +1,8 @@
+---
+description: Fynbos Five agent brief — stack, files, and what not to add
+alwaysApply: true
+---
+
+# Follow AGENTS.md
+
+This project’s source of truth for coding agents is the root [AGENTS.md](../../AGENTS.md). Read it before changing files. Keep the app a static HTML/CSS/JS GitHub Pages game; put all player-facing copy in `content.js`.

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#1e3318" />
+    <title>Fynbos Five</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="board" class="board">
+      <header class="board-header">
+        <p class="kicker">Stellenbosch Botanical Garden</p>
+        <h1 id="title">Fynbos Five</h1>
+        <p id="tagline" class="tagline"></p>
+      </header>
+
+      <section class="guilds" id="guilds" aria-label="Your ecosystem team"></section>
+
+      <div class="board-actions">
+        <button type="button" id="catch-bee" class="btn btn-primary"></button>
+        <button type="button" id="reset" class="btn btn-ghost"></button>
+      </div>
+    </main>
+
+    <section id="capture" class="overlay capture" hidden>
+      <button type="button" id="capture-back" class="btn btn-chip">Team</button>
+      <p id="capture-guild" class="capture-guild"></p>
+      <h2 id="capture-name" class="capture-name"></h2>
+      <p id="capture-sci" class="capture-sci"></p>
+      <div class="scene">
+        <img id="capture-insect" class="insect" alt="" draggable="false" />
+        <div class="seed-pod-wrap" id="seed-pod-wrap">
+          <button
+            type="button"
+            id="seed-pod"
+            class="seed-pod"
+            aria-label="Swipe the seed-pod up to catch"
+          >
+            <span class="pod-shine"></span>
+          </button>
+        </div>
+      </div>
+      <p id="capture-hint" class="capture-hint"></p>
+    </section>
+
+    <section id="quiz" class="overlay modal-overlay" hidden>
+      <div class="card">
+        <p class="card-kicker">Quick quiz</p>
+        <h2 id="quiz-question"></h2>
+        <div id="quiz-options" class="options"></div>
+        <p id="quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="facts" class="overlay modal-overlay" hidden>
+      <div class="card">
+        <p id="facts-guild" class="card-kicker"></p>
+        <h2 id="facts-name"></h2>
+        <p id="facts-sci" class="capture-sci"></p>
+        <img id="facts-image" class="facts-image" alt="" />
+        <p id="facts-body" class="facts-body"></p>
+        <button type="button" id="facts-close" class="btn btn-primary">Close</button>
+      </div>
+    </section>
+
+    <section id="message" class="overlay modal-overlay" hidden>
+      <div class="card">
+        <h2 id="message-title"></h2>
+        <p id="message-body"></p>
+        <button type="button" id="message-dismiss" class="btn btn-primary"></button>
+      </div>
+    </section>
+
+    <script src="content.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
