@@ -236,22 +236,17 @@ h1 {
   font-size: 0.92rem;
 }
 
-.scene {
-  position: relative;
-  flex: 1;
-  min-height: 18rem;
-}
-
 .insect {
   position: absolute;
   left: 50%;
-  top: 28%;
+  top: 50%;
   width: min(58vw, 14rem);
-  transform: translateX(-50%);
-  transform-origin: center 70%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
   filter: drop-shadow(0 10px 16px rgba(30, 40, 10, 0.35));
   user-select: none;
   pointer-events: none;
+  z-index: 3;
 }
 
 .insect.is-sucked {
@@ -265,16 +260,22 @@ h1 {
 .seed-pod-wrap {
   position: absolute;
   left: 50%;
-  bottom: 1.6rem;
+  top: calc(100dvh - 7.2rem);
   width: 4.4rem;
   height: 5.4rem;
   transform: translateX(-50%);
   touch-action: none;
-  z-index: 2;
+  z-index: 4;
 }
 
 .seed-pod-wrap.is-throwing {
-  transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: top 0.38s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.seed-pod-wrap.is-centered {
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .seed-pod {
@@ -320,10 +321,15 @@ h1 {
 
 .capture-hint {
   text-align: center;
-  margin: 0;
+  margin: auto 0 0;
   font-family: system-ui, sans-serif;
   font-size: 0.95rem;
   color: var(--soil);
+}
+
+.capture.is-quizzing .capture-hint,
+.capture.is-quizzing #capture-back {
+  visibility: hidden;
 }
 
 .modal-overlay {
@@ -332,6 +338,23 @@ h1 {
   place-items: end center;
   padding: 1rem;
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+#quiz.modal-overlay {
+  z-index: 12;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 52%,
+    rgba(12, 16, 8, 0.25) 72%,
+    rgba(12, 16, 8, 0.45) 100%
+  );
+}
+
+#quiz .card {
+  pointer-events: auto;
+  max-height: 46dvh;
 }
 
 .card {
@@ -436,19 +459,18 @@ h1 {
 
 @keyframes suck {
   to {
-    top: 50%;
-    transform: translateX(-50%) translateY(-30%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
     opacity: 0;
   }
 }
 
 @keyframes popout {
   from {
-    transform: translateX(-50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
     opacity: 0;
   }
   to {
-    transform: translateX(-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 }

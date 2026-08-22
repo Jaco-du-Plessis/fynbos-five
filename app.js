@@ -147,6 +147,7 @@
     els.captureInsect.alt = insect.commonName;
     els.captureHint.textContent = content.captureHint;
     els.capture.hidden = false;
+    els.capture.classList.remove("is-quizzing");
     els.quiz.hidden = true;
     document.body.style.overflow = "hidden";
   }
@@ -155,6 +156,7 @@
     activeId = null;
     throwLocked = false;
     els.capture.hidden = true;
+    els.capture.classList.remove("is-quizzing");
     els.quiz.hidden = true;
     resetPod();
     document.body.style.overflow = "";
@@ -163,9 +165,9 @@
   function resetPod() {
     var wrap = els.seedPodWrap;
     els.seedPod.classList.remove("is-shake");
-    wrap.classList.remove("is-throwing");
+    wrap.classList.remove("is-throwing", "is-centered");
     wrap.style.transition = "";
-    wrap.style.transform = "translateX(-50%)";
+    wrap.style.transform = "";
   }
 
   function showQuiz(insect) {
@@ -185,6 +187,7 @@
       });
       els.quizOptions.appendChild(btn);
     });
+    els.capture.classList.add("is-quizzing");
     els.quiz.hidden = false;
   }
 
@@ -201,6 +204,7 @@
 
     window.setTimeout(function () {
       els.quiz.hidden = true;
+      els.capture.classList.remove("is-quizzing");
       if (correct) {
         catchInsect(insect);
       } else {
@@ -287,13 +291,14 @@
     throwLocked = true;
     var wrap = els.seedPodWrap;
     var insect = els.captureInsect;
-    var wrapRect = wrap.getBoundingClientRect();
-    var sceneRect = wrap.parentElement.getBoundingClientRect();
-    var targetY =
-      sceneRect.top + sceneRect.height / 2 - (wrapRect.top + wrapRect.height / 2);
     wrap.classList.add("is-throwing");
-    wrap.style.transition = "transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1)";
-    wrap.style.transform = "translateX(-50%) translateY(" + targetY + "px)";
+    wrap.style.transition = "";
+    wrap.style.transform = "";
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        wrap.classList.add("is-centered");
+      });
+    });
 
     window.setTimeout(function () {
       insect.classList.add("is-sucked");
