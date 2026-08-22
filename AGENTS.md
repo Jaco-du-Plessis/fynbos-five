@@ -47,8 +47,9 @@ Catch order is free. Home is the five-guild board. Bee also has a CTA so the dem
 
 - Progress: `localStorage` key `fynbos-five-progress`. Include a Reset control.
 - Seed-pod (not a Pokéball — no Nintendo look). Swipe **up** to throw.
-- After a throw, the pod stays in the **centre of the screen**, then shakes. The quiz is a bottom sheet; the pod stays visible behind it. Wrong quiz → insect pops out, **same** question, throw again.
-- Pause after catch animation before the quiz (`QUIZ_AFTER_THROW_MS`). Show green/red on the chosen answer before continuing (`ANSWER_FEEDBACK_MS`). Do not reveal the correct option on a miss.
+- After a throw, the pod stays in the **centre of the screen**, then shakes. During the quiz it sits in the upper third so the question sheet fits without scrolling. Wrong quiz → insect pops out, **same** question, throw again.
+- Catch/quiz screens must not scroll. Fit the quiz (including miss feedback) in the small viewport (`100svh`). Compact options rather than adding overflow.
+- Pause after catch animation before the quiz (`QUIZ_AFTER_THROW_MS`). Show green/red on the chosen answer before continuing (`ANSWER_FEEDBACK_MS` / longer `WRONG_ANSWER_FEEDBACK_MS` so the miss copy can be read). Do not reveal the correct option on a miss.
 - No live camera, in-app QR scanner, GPS, accounts, sound, or server save.
 
 ## Commands

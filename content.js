@@ -45,7 +45,7 @@ window.CONTENT = {
 
   // Shown on the quiz after they tap A/B/C/D, before the next step.
   correctAnswer: "Caught!",
-  wrongAnswer: "Not quite — it popped out. Throw again.",
+  wrongAnswer: "Not quite — throw again.",
 
   alreadyCaught: "Already in your ecosystem.",
 

@@ -6,6 +6,7 @@
   var THROW_DISTANCE = 90;
   var QUIZ_AFTER_THROW_MS = 1800;
   var ANSWER_FEEDBACK_MS = 900;
+  var WRONG_ANSWER_FEEDBACK_MS = 2400;
 
   var content = window.CONTENT;
   var insects = content.insects;
@@ -210,7 +211,7 @@
       } else {
         popOut();
       }
-    }, ANSWER_FEEDBACK_MS);
+    }, correct ? ANSWER_FEEDBACK_MS : WRONG_ANSWER_FEEDBACK_MS);
   }
 
   function catchInsect(insect) {
