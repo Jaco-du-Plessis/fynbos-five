@@ -132,7 +132,7 @@
         insect.guild +
         "</span>" +
         '<span class="slot-name">' +
-        (caught ? insect.commonName : "Not caught yet") +
+        (caught ? insect.commonName : "Not found yet") +
         "</span>";
       btn.addEventListener("click", function () {
         if (isCaught(insect.id)) {
