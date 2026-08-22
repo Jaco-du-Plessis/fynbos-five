@@ -32,6 +32,9 @@
  * Uncaught art is still run through the grey CSS filter. Swap the -locked
  * files when you have dedicated silhouette/grey artwork.
  *
+ * Tapping an uncaught tile shows `qrHint` — where to find that QR in the garden.
+ * Replace the placeholder sentences with the real plant / path notes.
+ *
  * QUIZ
  * ----
  * options[0] is A, [1] is B, [2] is C, [3] is D.
@@ -52,9 +55,9 @@ window.CONTENT = {
   // Button on the home board so the demo works even without the bee QR.
   catchBeeLabel: "Catch the Cape Honey Bee",
 
-  // Hint when someone taps a locked (grey) slot.
+  // Title for the popup when someone taps a locked tile.
+  // The body of that popup is each insect's `qrHint` (where to scan).
   lockedTitle: "Still out there",
-  lockedHint: "Find this insect in the garden and scan the QR on the plant.",
 
   captureHint: "Choose the right bait, then place it.",
   placeBaitLabel: "Place bait",
@@ -107,6 +110,8 @@ window.CONTENT = {
       image: "assets/bee.png",
       lockedImage: "assets/bee-locked.png",
       bait: "flower",
+      qrHint:
+        "Start of the walk — I'll hand out this QR (or scan the first station). Replace with the real garden spot.",
       quiz: {
         question: "What ecosystem service do Cape honey bees provide?",
         options: [
@@ -128,6 +133,8 @@ window.CONTENT = {
       image: "assets/ant.png",
       lockedImage: "assets/ant-locked.png",
       bait: "seed",
+      qrHint:
+        "Scan the QR at the seed-disperser station. Replace with the plant / path description.",
       quiz: {
         question: "How do pugnacious ants help plants?",
         options: [
@@ -149,6 +156,8 @@ window.CONTENT = {
       image: "assets/mantis.png",
       lockedImage: "assets/mantis-locked.png",
       bait: "fly",
+      qrHint:
+        "Scan the QR at the pest-control station. Replace with the plant / path description.",
       quiz: {
         question: "What role does a mantis play in the guilds?",
         options: [
@@ -170,6 +179,8 @@ window.CONTENT = {
       image: "assets/chafer.png",
       lockedImage: "assets/chafer-locked.png",
       bait: "fruit",
+      qrHint:
+        "Scan the QR at the recycler station. Replace with the plant / path description.",
       quiz: {
         question: "Why do recyclers like chafers matter?",
         options: [
@@ -191,6 +202,8 @@ window.CONTENT = {
       image: "assets/butterfly.png",
       lockedImage: "assets/butterfly-locked.png",
       bait: "orchid",
+      qrHint:
+        "Scan the QR at the specialist / red-flower station. Replace with the plant / path description.",
       quiz: {
         question: "What makes a specialist guild different?",
         options: [
