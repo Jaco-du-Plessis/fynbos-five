@@ -237,6 +237,12 @@ h1 {
   box-shadow: none;
 }
 
+.card .btn-ghost {
+  background: transparent;
+  color: var(--olive-dark);
+  border: 2px solid var(--olive);
+}
+
 .btn-chip {
   width: 2.6rem;
   height: 2.6rem;
@@ -634,6 +640,13 @@ h1 {
 
 .facts-body {
   margin: 0 0 1rem;
+}
+
+.message-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
 }
 
 #facts .card,
