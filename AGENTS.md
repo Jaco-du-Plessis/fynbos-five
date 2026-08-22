@@ -4,7 +4,7 @@ Instructions for coding agents working in this repo. Humans: see [README.md](REA
 
 ## What this is
 
-**Fynbos Five** — a one-shot mobile web game for a Stellenbosch Botanical Garden walk (university outreach video, ENT464). Catch five insect guilds with a swipe seed-pod + quiz. No backend.
+**Fynbos Five** — a one-shot mobile web game for a Stellenbosch Botanical Garden walk (university outreach video, ENT464). Catch five insect guilds by placing the right bait, then a short quiz. No backend.
 
 Keep it tiny. This is a 5–10 minute class demo, not a product.
 
@@ -20,11 +20,11 @@ Keep it tiny. This is a 5–10 minute class demo, not a product.
 | File | Owner | Role |
 | --- | --- | --- |
 | `content.js` | Brother (copy) | All writing, quiz, image paths. Heavily commented. |
-| `app.js` | Game logic | Hash routes, swipe, localStorage, animations |
+| `app.js` | Game logic | Hash routes, bait catch, localStorage, quiz |
 | `index.html` | Markup | Team board + capture overlay + quiz + facts + finale |
 | `styles.css` | Presentation | Mobile portrait, outdoor contrast, fynbos palette |
 | `qrcodes.html` | Print sheet | QR images from this page’s origin + `#catch/{id}` |
-| `assets/*.png` | Art | `example.png` is the template; species files use **exact** names below |
+| `assets/*.png` | Art | Insects + `bait-*.png` placeholders; `example.png` is the insect template |
 | `README.md` | Humans | How to play, edit copy, host, print QRs |
 
 Do **not** put copy strings in `app.js` if they belong in `content.js`.
@@ -41,16 +41,18 @@ IDs are the hash, the `content.js` `id`, and the PNG filename:
 | `chafer` | `assets/chafer.png` | `#catch/chafer` |
 | `butterfly` | `assets/butterfly.png` | `#catch/butterfly` |
 
+Correct bait (must match `content.js`): bee → `flower`, ant → `seed`, mantis → `fly`, chafer → `fruit`, butterfly → `orchid`.
+
 Catch order is free. Home is the five-guild board. Bee also has a CTA so the demo works without a QR.
 
 ## Behaviour to preserve
 
 - Progress: `localStorage` key `fynbos-five-progress`. Include a Reset control.
-- Seed-pod (not a Pokéball — no Nintendo look). Swipe **up** to throw.
-- After a throw, the pod stays in the **centre of the screen**, then shakes. During the quiz it sits in the upper third so the question sheet fits without scrolling. Wrong quiz → insect pops out, **same** question, throw again.
+- Catch is **choose bait → Place bait**. Wrong bait: show “Nothing happens.” then restart that catch (do not reveal the right bait). Right bait: insect is attracted, then the quiz.
+- Wrong quiz → restart the bait catch for that insect. Same question. Do not reveal the correct quiz option on a miss.
 - Catch/quiz screens must not scroll. Fit the quiz (including miss feedback) in the small viewport (`100svh`). Compact options rather than adding overflow.
-- Pause after catch animation before the quiz (`QUIZ_AFTER_THROW_MS`). Show green/red on the chosen answer before continuing (`ANSWER_FEEDBACK_MS` / longer `WRONG_ANSWER_FEEDBACK_MS` so the miss copy can be read). Do not reveal the correct option on a miss.
-- No live camera, in-app QR scanner, GPS, accounts, sound, or server save.
+- Pause after a correct bait before the quiz (`BAIT_ATTRACT_MS`). Hold miss copy long enough to read (`BAIT_WRONG_MS`, `WRONG_ANSWER_FEEDBACK_MS`).
+- No live camera, in-app QR scanner, GPS, accounts, sound, or server save. No seed-pod / Pokéball throw.
 
 ## Commands
 

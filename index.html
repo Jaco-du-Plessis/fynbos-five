@@ -8,7 +8,7 @@
     />
     <meta name="theme-color" content="#1e3318" />
     <title>Fynbos Five</title>
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body>
     <main id="board" class="board">
@@ -31,18 +31,14 @@
       <p id="capture-guild" class="capture-guild"></p>
       <h2 id="capture-name" class="capture-name"></h2>
       <p id="capture-sci" class="capture-sci"></p>
-      <img id="capture-insect" class="insect" alt="" draggable="false" />
-      <div class="seed-pod-wrap" id="seed-pod-wrap">
-        <button
-          type="button"
-          id="seed-pod"
-          class="seed-pod"
-          aria-label="Swipe the seed-pod up to catch"
-        >
-          <span class="pod-shine"></span>
-        </button>
+      <div class="catch-stage">
+        <img id="capture-insect" class="insect" alt="" draggable="false" />
+        <img id="placed-bait" class="placed-bait" alt="" draggable="false" hidden />
       </div>
+      <p id="bait-status" class="bait-status" aria-live="polite"></p>
       <p id="capture-hint" class="capture-hint"></p>
+      <div id="bait-picker" class="bait-picker" role="listbox" aria-label="Bait"></div>
+      <button type="button" id="place-bait" class="btn btn-primary" disabled></button>
     </section>
 
     <section id="quiz" class="overlay modal-overlay" hidden>
@@ -73,7 +69,7 @@
       </div>
     </section>
 
-    <script src="content.js?v=5"></script>
-    <script src="app.js?v=5"></script>
+    <script src="content.js?v=6"></script>
+    <script src="app.js?v=6"></script>
   </body>
 </html>

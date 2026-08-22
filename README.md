@@ -33,17 +33,19 @@ All copy lives in [`content.js`](content.js). That file is commented. Change que
    - `assets/butterfly.png` — Cape Mountain Beauty
 3. Replace the placeholder files. Refresh. Grey team-board silhouettes are the same images, coloured in after a catch.
 
+Bait art (placeholders until you have real sprites): `assets/bait-flower.png`, `bait-seed.png`, `bait-fly.png`, `bait-fruit.png`, `bait-orchid.png`.
+
 ## How catching works
 
-| Hash (append to the site URL) | Insect |
-| --- | --- |
-| `#catch/bee` | Cape Honey Bee (tutorial; also a button on the home board) |
-| `#catch/ant` | Large Pugnacious Ant |
-| `#catch/mantis` | Flag Mantis |
-| `#catch/chafer` | Garden Fruit Chafer |
-| `#catch/butterfly` | Cape Mountain Beauty |
+| Hash (append to the site URL) | Insect | Correct bait |
+| --- | --- | --- |
+| `#catch/bee` | Cape Honey Bee | Yellow aster |
+| `#catch/ant` | Large Pugnacious Ant | Fatty seed |
+| `#catch/mantis` | Flag Mantis | Trapped fly (*Musca domestica*) |
+| `#catch/chafer` | Garden Fruit Chafer | Overripe fruit |
+| `#catch/butterfly` | Cape Mountain Beauty | Red orchid |
 
-Home screen is the five-guild team board. Scan a QR (or tap **Catch the Cape Honey Bee**). Swipe the seed-pod **up**. Wrong quiz answer: insect pops out, same question, throw again. Right answer: slot reveals. Tap a caught insect for guild facts.
+Home screen is the five-guild team board. Scan a QR (or tap **Catch the Cape Honey Bee**). Choose a bait, then **Place bait**. Wrong bait: nothing happens, try again. Right bait: the insect is attracted, then a quiz. Wrong quiz answer restarts that catch. Right answer reveals the slot. Tap a caught insect for guild facts.
 
 Catch order is free so a wrong plant scan does not brick the walk.
 

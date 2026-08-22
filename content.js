@@ -20,6 +20,13 @@
  *   assets/chafer.png
  *   assets/butterfly.png
  *
+ * Bait placeholders (same PNG rules) — replace when you have real art:
+ *   assets/bait-flower.png   yellow aster
+ *   assets/bait-seed.png     fatty seed
+ *   assets/bait-fly.png      trapped housefly (Musca domestica)
+ *   assets/bait-fruit.png    overripe fruit
+ *   assets/bait-orchid.png   red orchid
+ *
  * Then refresh. The grey silhouette on the team board is the same image,
  * just coloured in after you catch it.
  *
@@ -27,8 +34,14 @@
  * ----
  * options[0] is A, [1] is B, [2] is C, [3] is D.
  * correctIndex is which option is right (0 = A, 1 = B, 2 = C, 3 = D).
- * Wrong answer → the insect pops out of the seed-pod and they throw again.
+ * Wrong answer → restart the bait catch for this insect.
  * The same question is used on retry (that is intentional).
+ *
+ * BAIT
+ * ----
+ * Each insect has a `bait` id that must match one of the `baits` entries.
+ * Player chooses a bait, then taps Place bait. Wrong bait → nothing happens,
+ * catch restarts. Right bait → insect is attracted, then the quiz.
  */
 window.CONTENT = {
   title: "Fynbos Five",
@@ -41,11 +54,13 @@ window.CONTENT = {
   lockedTitle: "Still out there",
   lockedHint: "Find this insect in the garden and scan the QR on the plant.",
 
-  captureHint: "Swipe the seed-pod up to catch",
+  captureHint: "Choose the right bait, then place it.",
+  placeBaitLabel: "Place bait",
+  wrongBait: "Nothing happens.",
 
   // Shown on the quiz after they tap A/B/C/D, before the next step.
   correctAnswer: "Caught!",
-  wrongAnswer: "Not quite — throw again.",
+  wrongAnswer: "Not quite — try again.",
 
   alreadyCaught: "Already in your ecosystem.",
 
@@ -66,6 +81,20 @@ window.CONTENT = {
     dismiss: "Back to the team",
   },
 
+  // Bait choices shown on every catch. `id` must match insect.bait.
+  baits: [
+    { id: "flower", label: "Yellow aster", image: "assets/bait-flower.png" },
+    { id: "seed", label: "Fatty seed", image: "assets/bait-seed.png" },
+    {
+      id: "fly",
+      label: "Trapped fly",
+      scientificName: "Musca domestica",
+      image: "assets/bait-fly.png",
+    },
+    { id: "fruit", label: "Overripe fruit", image: "assets/bait-fruit.png" },
+    { id: "orchid", label: "Red orchid", image: "assets/bait-orchid.png" },
+  ],
+
   // Order here is the order of slots on the team board.
   insects: [
     {
@@ -74,6 +103,7 @@ window.CONTENT = {
       scientificName: "Apis mellifera capensis",
       guild: "Pollinators",
       image: "assets/bee.png",
+      bait: "flower",
       quiz: {
         question: "What ecosystem service do Cape honey bees provide?",
         options: [
@@ -93,6 +123,7 @@ window.CONTENT = {
       scientificName: "Anoplolepis custodiens",
       guild: "Seed dispersers",
       image: "assets/ant.png",
+      bait: "seed",
       quiz: {
         question: "How do pugnacious ants help plants?",
         options: [
@@ -112,6 +143,7 @@ window.CONTENT = {
       scientificName: "Polyspilota aeruginosa",
       guild: "Pest control",
       image: "assets/mantis.png",
+      bait: "fly",
       quiz: {
         question: "What role does a mantis play in the guilds?",
         options: [
@@ -131,6 +163,7 @@ window.CONTENT = {
       scientificName: "Pachnoda sinuata",
       guild: "Recyclers",
       image: "assets/chafer.png",
+      bait: "fruit",
       quiz: {
         question: "Why do recyclers like chafers matter?",
         options: [
@@ -150,6 +183,7 @@ window.CONTENT = {
       scientificName: "Aeropetes tulbaghia",
       guild: "Specialists",
       image: "assets/butterfly.png",
+      bait: "orchid",
       quiz: {
         question: "What makes a specialist guild different?",
         options: [

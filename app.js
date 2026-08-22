@@ -3,13 +3,18 @@
 
   var STORAGE_KEY = "fynbos-five-progress";
   var LETTERS = ["A", "B", "C", "D"];
-  var THROW_DISTANCE = 90;
-  var QUIZ_AFTER_THROW_MS = 1800;
+  var BAIT_WRONG_MS = 1800;
+  var BAIT_ATTRACT_MS = 1100;
   var ANSWER_FEEDBACK_MS = 900;
   var WRONG_ANSWER_FEEDBACK_MS = 2400;
 
   var content = window.CONTENT;
   var insects = content.insects;
+  var baits = content.baits;
+  var baitById = {};
+  baits.forEach(function (bait) {
+    baitById[bait.id] = bait;
+  });
   var byId = {};
   insects.forEach(function (insect) {
     byId[insect.id] = insect;
@@ -28,8 +33,10 @@
     captureSci: document.getElementById("capture-sci"),
     captureInsect: document.getElementById("capture-insect"),
     captureHint: document.getElementById("capture-hint"),
-    seedPod: document.getElementById("seed-pod"),
-    seedPodWrap: document.getElementById("seed-pod-wrap"),
+    placedBait: document.getElementById("placed-bait"),
+    baitStatus: document.getElementById("bait-status"),
+    baitPicker: document.getElementById("bait-picker"),
+    placeBait: document.getElementById("place-bait"),
     quiz: document.getElementById("quiz"),
     quizQuestion: document.getElementById("quiz-question"),
     quizOptions: document.getElementById("quiz-options"),
@@ -49,9 +56,10 @@
 
   var state = loadState();
   var activeId = null;
-  var throwLocked = false;
+  var selectedBaitId = null;
+  var baitLocked = false;
   var pendingFinale = false;
-  var drag = null;
+  var baitTimer = null;
 
   function defaultState() {
     return { caught: [], seenFirstCatch: false };
@@ -136,11 +144,56 @@
     });
   }
 
+  function renderBaitPicker() {
+    els.baitPicker.innerHTML = "";
+    baits.forEach(function (bait) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className =
+        "bait-choice" + (selectedBaitId === bait.id ? " is-selected" : "");
+      btn.setAttribute("role", "option");
+      btn.setAttribute("aria-selected", selectedBaitId === bait.id ? "true" : "false");
+      btn.innerHTML =
+        '<img alt="" src="' +
+        bait.image +
+        '"><span>' +
+        bait.label +
+        "</span>";
+      btn.addEventListener("click", function () {
+        if (baitLocked) return;
+        selectedBaitId = bait.id;
+        renderBaitPicker();
+        els.placeBait.disabled = false;
+        els.baitStatus.textContent = "";
+        els.baitStatus.className = "bait-status";
+      });
+      els.baitPicker.appendChild(btn);
+    });
+  }
+
+  function clearBaitTimer() {
+    if (baitTimer) {
+      window.clearTimeout(baitTimer);
+      baitTimer = null;
+    }
+  }
+
+  function resetCatch() {
+    clearBaitTimer();
+    selectedBaitId = null;
+    baitLocked = false;
+    els.captureInsect.classList.remove("is-attracted");
+    els.placedBait.hidden = true;
+    els.placedBait.removeAttribute("src");
+    els.baitStatus.textContent = "";
+    els.baitStatus.className = "bait-status";
+    els.placeBait.disabled = true;
+    els.placeBait.textContent = content.placeBaitLabel;
+    renderBaitPicker();
+  }
+
   function showCapture(insect) {
     activeId = insect.id;
-    throwLocked = false;
-    resetPod();
-    els.captureInsect.classList.remove("is-sucked", "is-pop");
     els.captureGuild.textContent = insect.guild;
     els.captureName.textContent = insect.commonName;
     els.captureSci.textContent = insect.scientificName;
@@ -150,25 +203,46 @@
     els.capture.hidden = false;
     els.capture.classList.remove("is-quizzing");
     els.quiz.hidden = true;
+    resetCatch();
     document.body.style.overflow = "hidden";
   }
 
   function closeCapture() {
     activeId = null;
-    throwLocked = false;
+    clearBaitTimer();
     els.capture.hidden = true;
     els.capture.classList.remove("is-quizzing");
     els.quiz.hidden = true;
-    resetPod();
+    resetCatch();
     document.body.style.overflow = "";
   }
 
-  function resetPod() {
-    var wrap = els.seedPodWrap;
-    els.seedPod.classList.remove("is-shake");
-    wrap.classList.remove("is-throwing", "is-centered");
-    wrap.style.transition = "";
-    wrap.style.transform = "";
+  function placeSelectedBait() {
+    if (baitLocked || !activeId || !selectedBaitId) return;
+    var insect = byId[activeId];
+    var bait = baitById[selectedBaitId];
+    if (!insect || !bait) return;
+
+    baitLocked = true;
+    els.placeBait.disabled = true;
+    els.placedBait.src = bait.image;
+    els.placedBait.alt = bait.label;
+    els.placedBait.hidden = false;
+
+    if (selectedBaitId !== insect.bait) {
+      els.baitStatus.textContent = content.wrongBait;
+      els.baitStatus.className = "bait-status is-wrong";
+      baitTimer = window.setTimeout(function () {
+        resetCatch();
+      }, BAIT_WRONG_MS);
+      return;
+    }
+
+    els.baitStatus.textContent = "";
+    els.captureInsect.classList.add("is-attracted");
+    baitTimer = window.setTimeout(function () {
+      showQuiz(insect);
+    }, BAIT_ATTRACT_MS);
   }
 
   function showQuiz(insect) {
@@ -209,7 +283,7 @@
       if (correct) {
         catchInsect(insect);
       } else {
-        popOut();
+        resetCatch();
       }
     }, correct ? ANSWER_FEEDBACK_MS : WRONG_ANSWER_FEEDBACK_MS);
   }
@@ -247,16 +321,6 @@
     if (allCaught) showFinale();
   }
 
-  function popOut() {
-    throwLocked = false;
-    els.captureInsect.classList.remove("is-sucked");
-    els.captureInsect.classList.add("is-pop");
-    resetPod();
-    window.setTimeout(function () {
-      els.captureInsect.classList.remove("is-pop");
-    }, 450);
-  }
-
   function showFacts(insect) {
     els.factsGuild.textContent = insect.guild;
     els.factsName.textContent = insect.commonName;
@@ -285,67 +349,6 @@
       els.message.hidden = true;
       if (onClose) onClose();
     };
-  }
-
-  function throwPod() {
-    if (throwLocked || !activeId) return;
-    throwLocked = true;
-    var wrap = els.seedPodWrap;
-    var insect = els.captureInsect;
-    wrap.classList.add("is-throwing");
-    wrap.style.transition = "";
-    wrap.style.transform = "";
-    window.requestAnimationFrame(function () {
-      window.requestAnimationFrame(function () {
-        wrap.classList.add("is-centered");
-      });
-    });
-
-    window.setTimeout(function () {
-      insect.classList.add("is-sucked");
-    }, 280);
-
-    window.setTimeout(function () {
-      els.seedPod.classList.add("is-shake");
-    }, 420);
-
-    window.setTimeout(function () {
-      var current = byId[activeId];
-      if (current) showQuiz(current);
-    }, QUIZ_AFTER_THROW_MS);
-  }
-
-  function onPointerDown(event) {
-    if (throwLocked) return;
-    event.preventDefault();
-    drag = {
-      pointerId: event.pointerId,
-      startY: event.clientY,
-      lastY: event.clientY,
-    };
-    els.seedPod.setPointerCapture(event.pointerId);
-  }
-
-  function onPointerMove(event) {
-    if (!drag || event.pointerId !== drag.pointerId || throwLocked) return;
-    drag.lastY = event.clientY;
-    var dy = Math.min(20, event.clientY - drag.startY);
-    els.seedPodWrap.style.transform = "translateX(-50%) translateY(" + dy + "px)";
-  }
-
-  function onPointerUp(event) {
-    if (!drag || event.pointerId !== drag.pointerId) return;
-    var dy = drag.lastY - drag.startY;
-    drag = null;
-    if (dy <= -THROW_DISTANCE) {
-      throwPod();
-    } else {
-      els.seedPodWrap.style.transition = "transform 0.22s ease-out";
-      els.seedPodWrap.style.transform = "translateX(-50%)";
-      window.setTimeout(function () {
-        if (!throwLocked) els.seedPodWrap.style.transition = "";
-      }, 220);
-    }
   }
 
   function route() {
@@ -382,14 +385,10 @@
   });
 
   els.captureBack.addEventListener("click", goHome);
+  els.placeBait.addEventListener("click", placeSelectedBait);
   els.factsClose.addEventListener("click", function () {
     els.facts.hidden = true;
   });
-
-  els.seedPod.addEventListener("pointerdown", onPointerDown, { passive: false });
-  els.seedPod.addEventListener("pointermove", onPointerMove);
-  els.seedPod.addEventListener("pointerup", onPointerUp);
-  els.seedPod.addEventListener("pointercancel", onPointerUp);
 
   window.addEventListener("hashchange", route);
 
