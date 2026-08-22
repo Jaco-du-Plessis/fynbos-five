@@ -51,6 +51,7 @@
     message: document.getElementById("message"),
     messageTitle: document.getElementById("message-title"),
     messageBody: document.getElementById("message-body"),
+    messageCancel: document.getElementById("message-cancel"),
     messageDismiss: document.getElementById("message-dismiss"),
   };
 
@@ -347,12 +348,34 @@
 
   function showMessage(title, body, dismiss, onClose) {
     els.messageTitle.textContent = title;
+    els.messageTitle.hidden = !title;
     els.messageBody.textContent = body;
     els.messageDismiss.textContent = dismiss;
+    els.messageCancel.hidden = true;
+    els.messageCancel.onclick = null;
     els.message.hidden = false;
     els.messageDismiss.onclick = function () {
       els.message.hidden = true;
       if (onClose) onClose();
+    };
+  }
+
+  function closeMessage() {
+    els.message.hidden = true;
+  }
+
+  function showConfirm(title, body, cancelLabel, confirmLabel, onConfirm) {
+    els.messageTitle.textContent = title || "";
+    els.messageTitle.hidden = !title;
+    els.messageBody.textContent = body;
+    els.messageCancel.textContent = cancelLabel;
+    els.messageDismiss.textContent = confirmLabel;
+    els.messageCancel.hidden = false;
+    els.message.hidden = false;
+    els.messageCancel.onclick = closeMessage;
+    els.messageDismiss.onclick = function () {
+      closeMessage();
+      if (onConfirm) onConfirm();
     };
   }
 
@@ -381,18 +404,31 @@
   });
 
   els.reset.addEventListener("click", function () {
-    if (!window.confirm(content.resetConfirm)) return;
-    state = defaultState();
-    saveState();
-    pendingFinale = false;
-    goHome();
-    renderBoard();
+    showConfirm(
+      content.title,
+      content.resetConfirm,
+      content.resetCancel,
+      content.resetLabel,
+      function () {
+        state = defaultState();
+        saveState();
+        pendingFinale = false;
+        goHome();
+        renderBoard();
+      }
+    );
   });
 
   els.captureBack.addEventListener("click", goHome);
   els.placeBait.addEventListener("click", placeSelectedBait);
   els.factsClose.addEventListener("click", function () {
     els.facts.hidden = true;
+  });
+
+  els.message.addEventListener("click", function (event) {
+    if (event.target !== els.message) return;
+    if (els.messageCancel.hidden) return;
+    closeMessage();
   });
 
   window.addEventListener("hashchange", route);

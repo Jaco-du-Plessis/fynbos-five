@@ -8,7 +8,7 @@
     />
     <meta name="theme-color" content="#32300C" />
     <title>Fynbos Five</title>
-    <link rel="stylesheet" href="styles.css?v=15" />
+    <link rel="stylesheet" href="styles.css?v=18" />
   </head>
   <body>
     <main id="board" class="board">
@@ -28,14 +28,16 @@
 
     <section id="capture" class="overlay capture" hidden>
       <button type="button" id="capture-back" class="btn btn-chip" aria-label="Back to team">←</button>
-      <p id="capture-guild" class="capture-guild"></p>
-      <h2 id="capture-name" class="capture-name"></h2>
-      <p id="capture-sci" class="capture-sci"></p>
+      <div class="capture-id">
+        <p id="capture-guild" class="capture-guild"></p>
+        <h2 id="capture-name" class="capture-name"></h2>
+        <p id="capture-sci" class="capture-sci"></p>
+      </div>
       <div class="catch-stage">
         <img id="capture-insect" class="insect" alt="" draggable="false" />
         <img id="placed-bait" class="placed-bait" alt="" draggable="false" hidden />
+        <p id="bait-status" class="bait-status" aria-live="polite"></p>
       </div>
-      <p id="bait-status" class="bait-status" aria-live="polite"></p>
       <p id="capture-hint" class="capture-hint"></p>
       <div id="bait-picker" class="bait-picker" role="listbox" aria-label="Bait"></div>
       <button type="button" id="place-bait" class="btn btn-primary" disabled></button>
@@ -65,11 +67,14 @@
       <div class="card">
         <h2 id="message-title"></h2>
         <p id="message-body"></p>
-        <button type="button" id="message-dismiss" class="btn btn-primary"></button>
+        <div class="message-actions">
+          <button type="button" id="message-cancel" class="btn btn-ghost" hidden></button>
+          <button type="button" id="message-dismiss" class="btn btn-primary"></button>
+        </div>
       </div>
     </section>
 
-    <script src="content.js?v=12"></script>
-    <script src="app.js?v=12"></script>
+    <script src="content.js?v=13"></script>
+    <script src="app.js?v=14"></script>
   </body>
 </html>

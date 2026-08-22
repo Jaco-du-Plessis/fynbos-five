@@ -70,6 +70,7 @@ window.CONTENT = {
   alreadyCaught: "Already in your ecosystem.",
 
   resetLabel: "Reset",
+  resetCancel: "Cancel",
   resetConfirm: "Start the playthrough over on this phone?",
 
   // Shown once after the first successful catch (usually the bee tutorial).
