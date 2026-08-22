@@ -22,7 +22,7 @@ Keep it tiny. This is a 5–10 minute class demo, not a product.
 | `content.js` | Brother (copy) | All writing, quiz, image paths. Heavily commented. |
 | `app.js` | Game logic | Hash routes, bait catch, localStorage, quiz |
 | `index.html` | Markup | Team board + capture overlay + quiz + facts + finale |
-| `styles.css` | Presentation | Mobile portrait, outdoor contrast, fynbos palette |
+| `styles.css` | Presentation | Pokémon GO–like circles/pills; palette `#CD8930` `#EFA00D` `#32300C` `#38400C` `#E3D5C1` |
 | `qrcodes.html` | Print sheet | QR images from this page’s origin + `#catch/{id}` |
 | `assets/*.png` | Art | Colour insects + `*-locked.png` for the uncaught team tile; `bait-*.png`; `example.png` is the insect template |
 | `README.md` | Humans | How to play, edit copy, host, print QRs |
