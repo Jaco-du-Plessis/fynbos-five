@@ -50,7 +50,7 @@ Catch order is free. Home is the five-guild board. Bee also has a CTA so the dem
 - Progress: `localStorage` key `fynbos-five-progress`. Include a Reset control.
 - Catch is **choose bait → Place bait**. Wrong bait: show “Nothing happens.” then restart that catch (do not reveal the right bait). Right bait: insect is attracted, then the quiz.
 - Wrong quiz → restart the bait catch for that insect. Same question. Do not reveal the correct quiz option on a miss.
-- Catch/quiz screens must not scroll. Fit the quiz (including miss feedback) in the small viewport (`100svh`). Compact options rather than adding overflow.
+- Catch/quiz screens must not scroll. The team board may scroll the guild grid if the phone is short, so names are never clipped.
 - Pause after a correct bait before the quiz (`BAIT_ATTRACT_MS`). Hold miss copy long enough to read (`BAIT_WRONG_MS`, `WRONG_ANSWER_FEEDBACK_MS`).
 - No live camera, in-app QR scanner, GPS, accounts, sound, or server save. No seed-pod / Pokéball throw.
 
