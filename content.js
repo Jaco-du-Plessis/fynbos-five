@@ -158,14 +158,14 @@ window.CONTENT = {
         question: "How do pugnacious ants help plants?",
         options: [
           "They pollinate protea flowers at night",
-          "They carry seeds and bury them (myrmecochory)",
+          "They carry seeds and bury them",
           "They eat only nectar and ignore seeds",
           "They compost leaves into soil in one night",
         ],
         correctIndex: 1,
       },
       facts:
-        "Seed dispersers move seeds away from the parent plant. Many fynbos plants offer ants a food body on the seed so the ant carts it home. Replace this with your notes.",
+        "Seed dispersers play an important role in transporting seeds to new locations. Many fynbos plants work in collaboration with ants to have their seeds buried and protected from fires, by offering them a food body on the seed.",
     },
     {
       id: "mantis",
@@ -182,13 +182,13 @@ window.CONTENT = {
         options: [
           "It only drinks nectar",
           "It recycles dung into soil",
-          "It hunts other insects — natural pest control",
-          "It pollinates red tubular flowers",
+          "It hunts other insects",
+          "It pollinates specialised flowers",
         ],
         correctIndex: 2,
       },
       facts:
-        "Predators keep herbivore numbers in check. A flag mantis is sit-and-wait pest control. Replace this with your notes.",
+        "Predators keep other insect populations in check. Without them, some insect species would grow unchecked and damage the ecosystem. Predators and parasites prevent common onsect species from becoming pests.",
     },
     {
       id: "chafer",
@@ -203,15 +203,15 @@ window.CONTENT = {
       quiz: {
         question: "Why do recyclers like chafers matter?",
         options: [
-          "They only eat living leaves",
+          "They eat and kill invasive plants",
           "They chase birds away from nests",
-          "They pollinate only at midday",
-          "They break down fruit and waste, returning nutrients",
+          "They pollinate plants when other insects are unable to",
+          "They break down organic material, returning vital nutrients to the soil",
         ],
         correctIndex: 3,
       },
       facts:
-        "Recyclers (decomposers) turn dead plant material and fruit into nutrients plants can use again. Replace this with your notes.",
+        "Recyclers (decomposers) turn dead plant material and fruit into nutrients plants can use again. The Cape Floristic Region has extremely low soil nutrient levels, meaning the growth rates are often limited by how fast decomposers can return used nutrients to the soil.",
     },
     {
       id: "butterfly",
@@ -227,14 +227,14 @@ window.CONTENT = {
         question: "What makes a specialist guild different?",
         options: [
           "They only live in water",
-          "They depend on particular plants or habitats",
-          "They eat every insect in the garden",
-          "They never visit flowers",
+          "They use special endemic species that aren't found anywhere else",
+          "They specialise in eating invasive plants to keep their populations in control",
+          "They rarely visit flowers, avoiding competition with other guilds",
         ],
         correctIndex: 1,
       },
       facts:
-        "Specialists are tied to particular plants (this butterfly loves red flowers such as watsonias). If those plants go, the insect goes. Replace this with your notes.",
+        "Specialists are the alternative to generalist species. The unique behaviour of specialists allow for unique plants like endemic orchids to avoid harsh competition with other generalist plants. Many of South Africa's unique endemics are reliant on a single species of specialists to complete it's life cycle.",
     },
   ],
 };
