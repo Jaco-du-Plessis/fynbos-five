@@ -41,7 +41,7 @@ Bait art (placeholders until you have real sprites): `assets/bait-flower.png`, `
 
 | Hash (append to the site URL) | Insect | Correct bait |
 | --- | --- | --- |
-| `#catch/bee` | Cape Honey Bee | Yellow flower |
+| `#catch/bee` | Cape Honey Bee | Common flower |
 | `#catch/ant` | Large Pugnacious Ant | Fatty seed |
 | `#catch/mantis` | Flag Mantis | Trapped fly (*Musca domestica*) |
 | `#catch/chafer` | Garden Fruit Chafer | Overripe fruit |

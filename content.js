@@ -22,7 +22,7 @@
  *   assets/butterfly.png / butterfly-locked.png
  *
  * Bait placeholders (same PNG rules) — replace when you have real art:
- *   assets/bait-flower.png   yellow flower
+ *   assets/bait-flower.png   common flower
  *   assets/bait-seed.png     fatty seed
  *   assets/bait-fly.png      trapped housefly (Musca domestica)
  *   assets/bait-fruit.png    overripe fruit
@@ -94,20 +94,20 @@ window.CONTENT = {
   // Shown once after the first successful find (usually the bee tutorial).
   firstCatchMessage: {
     title: "One guild down",
-    body: "A healthy ecosystem needs more than pollinators. Walk the garden and find an insect from each guild so every service is covered.",
+    body: "A healthy ecosystem needs more than just pollinators. Look for the other guilds in the garden and find an insect from each to complete your ecosystem. Tap the missing insects for a hint.",
     dismiss: "Find the next insect",
   },
 
   // Shown when all five are found.
   finale: {
     title: "A functioning ecosystem",
-    body: "Pollinators, seed dispersers, predators, recyclers, and specialists each do a job the others cannot. Together they keep the fynbos working. (Replace this paragraph with the real closing copy.)",
+    body: "Pollinators, seed dispersers, predators, recyclers, and specialists each do a job the others cannot. Working together, they ensure that the ecosystem remains balanced and healthy. Come back soon to discover more guilds and species.",
     dismiss: "Back to the team",
   },
 
   // Bait choices shown on every find. `id` must match insect.bait.
   baits: [
-    { id: "flower", label: "Yellow flower", image: "assets/bait-flower.png" },
+    { id: "flower", label: "Common flower", image: "assets/bait-flower.png" },
     { id: "seed", label: "Fatty seed", image: "assets/bait-seed.png" },
     {
       id: "fly",
@@ -142,7 +142,7 @@ window.CONTENT = {
         correctIndex: 0,
       },
       facts:
-        "Pollinators move pollen so plants can set seed and fruit. Cape honey bees are a local subspecies — replace this blurb with your ecology notes.",
+        "About 9 out of 10 flowering plants need insects to pollinate them. Cape honey bees are our local subspecies of honey bee, but many of our pollinators are unique to South Africa.",
     },
     {
       id: "ant",
