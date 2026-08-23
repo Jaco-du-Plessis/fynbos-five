@@ -58,12 +58,12 @@ window.CONTENT = {
       {
         kicker: "Stellenbosch Botanical Garden",
         title: "A hidden workforce",
-        body: "Beneath the leaves and underfoot, a network of tiny workers is running the world around you. Insects are not just bugs — they are the engines of our local fynbos ecosystem.",
+        body: "Beneath the leaves and underfoot, a network of tiny workers is running the world around you. Insects are not just bugs - they are the workers that keep our ecosystem functioning.",
       },
       {
         kicker: "Your mission",
         title: "Assemble five guilds",
-        body: "Your ecosystem starts empty. Walk the garden, scan a QR at each station, and choose the bait that will attract that insect. A short quiz adds it to your team. Can you find all five — pollinators, seed dispersers, pest control, recyclers, and specialists — and build a thriving community?",
+        body: "Your ecosystem starts empty. Walk the garden, scan a QR at each station, and choose the bait that will attract that insect. Can you find all five - pollinators, seed dispersers, pest control, recyclers, and specialists - and build a thriving community?",
       },
     ],
     next: "Next",
@@ -71,7 +71,7 @@ window.CONTENT = {
   },
 
   // Button on the home board so the demo works even without the bee QR.
-  catchBeeLabel: "Find the Cape Honey Bee",
+  catchBeeLabel: "Find the first insect",
 
   // Title for the popup when someone taps a locked tile.
   // The body of that popup is each insect's `qrHint` (where to scan).
@@ -89,12 +89,12 @@ window.CONTENT = {
 
   resetLabel: "Reset",
   resetCancel: "Cancel",
-  resetConfirm: "Start the playthrough over on this phone?",
+  resetConfirm: "Start the playthrough over on this device?",
 
   // Shown once after the first successful find (usually the bee tutorial).
   firstCatchMessage: {
-    title: "One guild down",
-    body: "A healthy ecosystem needs more than just pollinators. Look for the other guilds in the garden and find an insect from each to complete your ecosystem. Tap the missing insects for a hint.",
+    title: "One guild down!",
+    body: "A healthy ecosystem needs more than just pollinators. Look for the other guilds in the garden and find an insect from each to complete your ecosystem. Tap the missing insects if you need a hint.",
     dismiss: "Find the next insect",
   },
 
@@ -134,15 +134,15 @@ window.CONTENT = {
       quiz: {
         question: "What ecosystem service do Cape honey bees provide?",
         options: [
-          "Pollination — moving pollen between flowers",
-          "Breaking down dead wood",
-          "Dispersing large seeds underground",
-          "Hunting other insects as top predators",
+          "They help pollinate many plant species",
+          "They break down rotting wood and leaf litter",
+          "They transport plant seeds to new locations",
+          "They hunt other insects to keep populations in check",
         ],
         correctIndex: 0,
       },
       facts:
-        "About 9 out of 10 flowering plants need insects to pollinate them. Cape honey bees are our local subspecies of honey bee, but many of our pollinators are unique to South Africa.",
+        "About 9 out of 10 wild flowering plants need insects to pollinate them. Cape honey bees are our local subspecies of honey bee, but many of our pollinators are unique to South Africa, the Western Cape, or even just Stellenbosch.",
     },
     {
       id: "ant",
