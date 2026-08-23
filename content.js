@@ -63,7 +63,7 @@ window.CONTENT = {
       {
         kicker: "Your mission",
         title: "Assemble five guilds",
-        body: "Your ecosystem starts empty. Walk the garden, scan a QR at each station, and choose the bait that will attract that insect. Can you find all five - pollinators, seed dispersers, pest control, recyclers, and specialists - and build a thriving community?",
+        body: "Your ecosystem starts empty. Explore the garden, search for the QR codes, and choose the bait that will attract that insect. Can you find all five - pollinators, seed dispersers, pest control, recyclers, and specialists - and build a thriving community?",
       },
     ],
     next: "Next",
@@ -101,7 +101,7 @@ window.CONTENT = {
   // Shown when all five are found.
   finale: {
     title: "A functioning ecosystem",
-    body: "Pollinators, seed dispersers, predators, recyclers, and specialists each do a job the others cannot. Working together, they ensure that the ecosystem remains balanced and healthy. Come back soon to discover more guilds and species.",
+    body: "Pollinators, seed dispersers, predators, recyclers, and specialists each do a job the others cannot. Working together, they ensure that the ecosystem remains balanced and healthy. Without insects, the world around you would be unrecognisable - all species need to be protected, because every species a role to play.",
     dismiss: "Back to the team",
   },
 
@@ -211,7 +211,7 @@ window.CONTENT = {
         correctIndex: 3,
       },
       facts:
-        "Recyclers (decomposers) turn dead plant material and fruit into nutrients plants can use again. The Cape Floristic Region has extremely low soil nutrient levels, meaning the growth rates are often limited by how fast decomposers can return used nutrients to the soil.",
+        "Recyclers (decomposers) turn dead plant material and fruit into nutrients plants can use again. The Cape Floristic Region has extremely low soil nutrient levels, meaning growth rates are often limited by how fast decomposers can return nutrients to the soil.",
     },
     {
       id: "butterfly",
