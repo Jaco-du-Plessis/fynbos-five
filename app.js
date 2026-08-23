@@ -53,6 +53,12 @@
     messageBody: document.getElementById("message-body"),
     messageCancel: document.getElementById("message-cancel"),
     messageDismiss: document.getElementById("message-dismiss"),
+    intro: document.getElementById("intro"),
+    introKicker: document.getElementById("intro-kicker"),
+    introTitle: document.getElementById("intro-title"),
+    introBody: document.getElementById("intro-body"),
+    introDots: document.getElementById("intro-dots"),
+    introNext: document.getElementById("intro-next"),
   };
 
   var state = loadState();
@@ -61,9 +67,10 @@
   var baitLocked = false;
   var pendingFinale = false;
   var baitTimer = null;
+  var introIndex = 0;
 
   function defaultState() {
-    return { caught: [], seenFirstCatch: false };
+    return { caught: [], seenFirstCatch: false, seenIntro: false };
   }
 
   function loadState() {
@@ -72,11 +79,16 @@
       if (!raw) return defaultState();
       var parsed = JSON.parse(raw);
       if (!parsed || !Array.isArray(parsed.caught)) return defaultState();
+      var caught = parsed.caught.filter(function (id) {
+        return Boolean(byId[id]);
+      });
       return {
-        caught: parsed.caught.filter(function (id) {
-          return Boolean(byId[id]);
-        }),
+        caught: caught,
         seenFirstCatch: Boolean(parsed.seenFirstCatch),
+        seenIntro:
+          parsed.seenIntro === true ||
+          caught.length > 0 ||
+          Boolean(parsed.seenFirstCatch),
       };
     } catch (err) {
       return defaultState();
@@ -346,6 +358,35 @@
     );
   }
 
+  function renderIntro() {
+    var slides = content.intro.slides;
+    var slide = slides[introIndex];
+    els.introKicker.textContent = slide.kicker || "";
+    els.introKicker.hidden = !slide.kicker;
+    els.introTitle.textContent = slide.title;
+    els.introBody.textContent = slide.body;
+    els.introNext.textContent =
+      introIndex === slides.length - 1 ? content.intro.start : content.intro.next;
+    els.introDots.innerHTML = "";
+    slides.forEach(function (_slide, index) {
+      var dot = document.createElement("span");
+      dot.className = "intro-dot" + (index === introIndex ? " is-active" : "");
+      els.introDots.appendChild(dot);
+    });
+  }
+
+  function showIntro() {
+    introIndex = 0;
+    renderIntro();
+    els.intro.hidden = false;
+  }
+
+  function finishIntro() {
+    state.seenIntro = true;
+    saveState();
+    els.intro.hidden = true;
+  }
+
   function showMessage(title, body, dismiss, onClose) {
     els.messageTitle.textContent = title;
     els.messageTitle.hidden = !title;
@@ -415,6 +456,7 @@
         pendingFinale = false;
         goHome();
         renderBoard();
+        showIntro();
       }
     );
   });
@@ -431,8 +473,18 @@
     closeMessage();
   });
 
+  els.introNext.addEventListener("click", function () {
+    if (introIndex < content.intro.slides.length - 1) {
+      introIndex += 1;
+      renderIntro();
+      return;
+    }
+    finishIntro();
+  });
+
   window.addEventListener("hashchange", route);
 
   renderBoard();
   route();
+  if (!state.seenIntro) showIntro();
 })();

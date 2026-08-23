@@ -650,13 +650,48 @@ h1 {
 }
 
 #facts .card,
-#message .card {
+#message .card,
+#intro .card {
   overflow: auto;
 }
 
 #facts .card .btn,
-#message .card .btn {
+#message .card .btn,
+#intro .card .btn {
   width: 100%;
+}
+
+#intro.intro-overlay {
+  z-index: 20;
+  place-items: center;
+  background: rgba(50, 48, 12, 0.82);
+}
+
+.intro-card {
+  overflow: auto;
+}
+
+.intro-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 1rem 0 0.95rem;
+}
+
+.intro-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--olive);
+  opacity: 0.28;
+}
+
+.intro-dot.is-active {
+  width: 1.15rem;
+  border-radius: var(--radius-pill);
+  background: var(--amber);
+  opacity: 1;
 }
 
 [hidden] {

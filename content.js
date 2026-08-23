@@ -14,46 +14,64 @@
  *   • Insect centred, facing the camera
  *
  * Drop your files into the assets/ folder using these exact names:
- *   assets/bee.png            — shown after catch (colour)
- *   assets/bee-locked.png     — team board before catch (still auto-greyed)
+ *   assets/bee.png            — shown after the insect is found (colour)
+ *   assets/bee-locked.png     — team board before it is found (still auto-greyed)
  *   assets/ant.png / ant-locked.png
  *   assets/mantis.png / mantis-locked.png
  *   assets/chafer.png / chafer-locked.png
  *   assets/butterfly.png / butterfly-locked.png
  *
  * Bait placeholders (same PNG rules) — replace when you have real art:
- *   assets/bait-flower.png   yellow aster
+ *   assets/bait-flower.png   yellow flower
  *   assets/bait-seed.png     fatty seed
  *   assets/bait-fly.png      trapped housefly (Musca domestica)
  *   assets/bait-fruit.png    overripe fruit
  *   assets/bait-orchid.png   red orchid
  *
- * The team board uses `lockedImage` until that insect is caught, then `image`.
- * Uncaught art is still run through the grey CSS filter. Swap the -locked
+ * The team board uses `lockedImage` until that insect is found, then `image`.
+ * Locked art is still run through the grey CSS filter. Swap the -locked
  * files when you have dedicated silhouette/grey artwork.
  *
- * Tapping an uncaught tile shows `qrHint` — where to find that QR in the garden.
+ * Tapping a locked tile shows `qrHint` — where to find that QR in the garden.
  * Replace the placeholder sentences with the real plant / path notes.
  *
  * QUIZ
  * ----
  * options[0] is A, [1] is B, [2] is C, [3] is D.
  * correctIndex is which option is right (0 = A, 1 = B, 2 = C, 3 = D).
- * Wrong answer → restart the bait catch for this insect.
+ * Wrong answer → restart the bait step for this insect.
  * The same question is used on retry (that is intentional).
  *
  * BAIT
  * ----
  * Each insect has a `bait` id that must match one of the `baits` entries.
  * Player chooses a bait, then taps Place bait. Wrong bait → nothing happens,
- * catch restarts. Right bait → insect is attracted, then the quiz.
+ * and the bait step restarts. Right bait → insect is attracted, then the quiz.
  */
 window.CONTENT = {
   title: "Fynbos Five",
-  tagline: "Catch five insect guilds to complete a working fynbos ecosystem.",
+  tagline: "Find five insect guilds to complete a working fynbos ecosystem. Tap the insects for a hint or more information.",
+
+  // Shown once the first time this phone opens the game (Reset also shows it again).
+  intro: {
+    slides: [
+      {
+        kicker: "Stellenbosch Botanical Garden",
+        title: "A hidden workforce",
+        body: "Beneath the leaves and underfoot, a network of tiny workers is running the world around you. Insects are not just bugs — they are the engines of our local fynbos ecosystem.",
+      },
+      {
+        kicker: "Your mission",
+        title: "Assemble five guilds",
+        body: "Your ecosystem starts empty. Walk the garden, scan a QR at each station, and choose the bait that will attract that insect. A short quiz adds it to your team. Can you find all five — pollinators, seed dispersers, pest control, recyclers, and specialists — and build a thriving community?",
+      },
+    ],
+    next: "Next",
+    start: "Start exploring",
+  },
 
   // Button on the home board so the demo works even without the bee QR.
-  catchBeeLabel: "Catch the Cape Honey Bee",
+  catchBeeLabel: "Find the Cape Honey Bee",
 
   // Title for the popup when someone taps a locked tile.
   // The body of that popup is each insect's `qrHint` (where to scan).
@@ -64,7 +82,7 @@ window.CONTENT = {
   wrongBait: "Nothing happens.",
 
   // Shown on the quiz after they tap A/B/C/D, before the next step.
-  correctAnswer: "Caught!",
+  correctAnswer: "Found!",
   wrongAnswer: "Not quite — try again.",
 
   alreadyCaught: "Already in your ecosystem.",
@@ -73,23 +91,23 @@ window.CONTENT = {
   resetCancel: "Cancel",
   resetConfirm: "Start the playthrough over on this phone?",
 
-  // Shown once after the first successful catch (usually the bee tutorial).
+  // Shown once after the first successful find (usually the bee tutorial).
   firstCatchMessage: {
     title: "One guild down",
-    body: "A healthy ecosystem needs more than pollinators. Walk the garden and catch an insect from each guild so every service is covered.",
+    body: "A healthy ecosystem needs more than pollinators. Walk the garden and find an insect from each guild so every service is covered.",
     dismiss: "Find the next insect",
   },
 
-  // Shown when all five are caught.
+  // Shown when all five are found.
   finale: {
     title: "A functioning ecosystem",
     body: "Pollinators, seed dispersers, predators, recyclers, and specialists each do a job the others cannot. Together they keep the fynbos working. (Replace this paragraph with the real closing copy.)",
     dismiss: "Back to the team",
   },
 
-  // Bait choices shown on every catch. `id` must match insect.bait.
+  // Bait choices shown on every find. `id` must match insect.bait.
   baits: [
-    { id: "flower", label: "Yellow aster", image: "assets/bait-flower.png" },
+    { id: "flower", label: "Yellow flower", image: "assets/bait-flower.png" },
     { id: "seed", label: "Fatty seed", image: "assets/bait-seed.png" },
     {
       id: "fly",
