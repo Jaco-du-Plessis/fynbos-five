@@ -227,7 +227,7 @@ window.CONTENT = {
         question: "What makes a specialist guild different?",
         options: [
           "They only live in water",
-          "They use special endemic species that aren't found anywhere else",
+          "They interact closely with endemic species that aren't found anywhere else",
           "They specialise in eating invasive plants to keep their populations in control",
           "They rarely visit flowers, avoiding competition with other guilds",
         ],
